@@ -1,12 +1,6 @@
-# app.py
 from dataclasses import asdict
-
-from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
+from fastapi import FastAPI, Form
 from starlette.responses import JSONResponse
-
-from backend.jira_ticket_creator import JiraTicketCreator
 from backend.meeting_processor import MeetingProcessor
 from backend.llm_client.ollama_client import OllamaClient
 import uvicorn
