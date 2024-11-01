@@ -1,0 +1,31 @@
+PM: Alright, team, let’s get a rundown on things we’ve encountered in this sprint that might shape our work in future sprints. I know everyone’s focused on core functionality, but anything we need to improve or plan for in the near term? Dev A, kick us off.
+
+Dev A: Definitely. So, the authentication flow is coming along, but if we’re bringing in social logins next, we’ll need to think about which services we’re targeting—Google, Facebook, and maybe even Apple Sign-in if we’re going to launch on iOS. We’ll also want to add some automated checks to detect any suspicious activity early on.
+
+PM: Good call, and we should prioritize those logins users are likely to expect. Let’s add Google and Facebook in Sprint 2, then consider Apple and maybe LinkedIn if users want that later.
+
+Dev B: Sounds good. And speaking of user expectations, I realized we’ll need a way for users to upload more than one profile photo. Right now, we’re only allowing one, but most dating apps let users have at least five or six. We’ll need to create a gallery feature eventually. I’d say Sprint 3, since we have other basics to build first.
+
+Dev C: True! On the backend, though, we’ll need to consider image moderation, especially if there are lots of uploads. And if we're adding user photos, we should look into automated filters or even AI-driven moderation to flag anything inappropriate. It could save us a lot of hassle with content quality.
+
+PM: Good thoughts on content moderation, and definitely an item to tackle soon—let’s tentatively plan for Sprint 4 on that. For now, maybe just a limit of three profile pictures, with manual approval for early testing?
+
+Dev D: Agreed. I also think we need to start thinking about notifications. Right now, we have basic messaging, but push notifications for new messages or matches will be critical to engagement. I’d say the backend for notifications should start soon, maybe in Sprint 3, so we’re ready for push notifications and even email notifications down the line.
+
+Dev A: That’s true; we’ll want to keep people coming back to the app. And on engagement—Dev C, I think your matching algorithm could eventually consider more than just basic interests and location. Maybe down the road, we could look at integrating more advanced filters or user-set preferences, like age range or specific interests.
+
+Dev C: Yep, absolutely. I was actually thinking that we could add a feedback loop for the matching algorithm—so it learns from user preferences and behaviors over time. It’s a big task, but maybe Sprint 5 or 6 we can start building it in phases.
+
+Dev B: Since we're talking engagement, we might eventually want a “Discover” or “Explore” feature, where users can browse profiles beyond their matches. Could be a lighter, more social feature. Definitely a later-sprint thing, but I think users would appreciate it.
+
+PM: These are all solid additions. Let’s tentatively plan out a roadmap based on this: authentication upgrades and push notifications in Sprints 2 and 3, then add extra profile photo support, moderation tools, and notification backend over Sprints 3 and 4. Dev C, the learning matching algorithm sounds great for Sprints 5 and 6. Anything else?
+
+Dev D: One last thought: security. We should probably think about adding more robust user protections as we scale. For instance, encryption for messaging and data privacy tools. We don’t need to tackle all that immediately, but planning for it now will help later.
+
+PM: Very true; let’s build in those protections gradually, especially as we get closer to launch. Let’s add those ideas to our roadmap for Sprints 4 through 6 so we can keep track. Anything else, or are we all set?
+
+Dev A: I think that covers it for now!
+
+Dev B: Yep, looks good.
+
+PM: Perfect. Great ideas, everyone. Let's keep this roadmap flexible, but it’s a strong plan to help us shape the app over the next few sprints. Thanks all—let’s make it happen!
