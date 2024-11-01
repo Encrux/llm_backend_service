@@ -3,11 +3,24 @@ from fastapi import FastAPI, Form
 from starlette.responses import JSONResponse
 from backend.meeting_processor import MeetingProcessor
 from backend.llm_client.ollama_client import OllamaClient
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 app = FastAPI()
 llm_client = OllamaClient()
 
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
 
 @app.post("/summarize/")
 async def summarize_log(conversation_log: str = Form(...)):
