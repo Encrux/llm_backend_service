@@ -5,7 +5,7 @@ with open("backend/example_log.txt", "r") as file:
     conversation_log = file.read()
 
 # Define the URL of the API endpoint
-url = "http://0.0.0.0:8000/summarize_log/"
+url = "http://0.0.0.0:8000/generate_tickets/"
 
 # Make the POST request
 response = requests.post(url, data={"conversation_log": conversation_log})
