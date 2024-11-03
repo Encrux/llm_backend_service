@@ -33,6 +33,9 @@ class MeetingProcessor:
             f"Make sure it's formatted as a python list of dictionaries, as your answer will be parsed directly."
         )['response']
 
+        # write res to file for debugging
+        with open('backend/dbg_logs/res.md', 'w') as f:
+            f.write(res)
         # Find the start and end indices of the list within the string
         start_index = res.index('[')
         # last square bracket in the string
