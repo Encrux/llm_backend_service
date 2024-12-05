@@ -12,3 +12,5 @@ services:
       - GROQ_API_KEY=${GROQ_API_KEY}
     volumes:
       - .:/app
+      - /etc/letsencrypt/live/spacey.dns.army/fullchain.pem:/app/fullchain.pem:ro
+      - /etc/letsencrypt/live/spacey.dns.army/privkey.pem:/app/privkey.pem:ro

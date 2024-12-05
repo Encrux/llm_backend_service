@@ -7,10 +7,6 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Copy SSL certificate and key
-COPY /etc/letsencrypt/live/spacey.dns.army/fullchain.pem /app/fullchain.pem
-COPY /etc/letsencrypt/live/spacey.dns.army/privkey.pem /app/privkey.pem
-
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
