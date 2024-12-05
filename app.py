@@ -11,8 +11,7 @@ load_dotenv()
 app = FastAPI()
 
 origins = [
-    "http://localhost",
-    "http://localhost:3000",
+    "https://localhost",
 ]
 
 app.add_middleware(
@@ -32,6 +31,7 @@ rate_limiter = RateLimiter(10, 1)
 
 @app.post('/post/')
 async def post_query(query: str = Form(...)):
+    print(query)
     if not rate_limiter.allow_request():
         wait_time = rate_limiter.wait_time()
         raise HTTPException(status_code=429, detail=f"Rate limit exceeded. Try again in {wait_time:.2f} seconds.")
