@@ -1,15 +1,15 @@
-import json
-from dataclasses import asdict
-from fastapi import FastAPI, Form
+import os
+from fastapi import FastAPI, Form, HTTPException
 from starlette.responses import JSONResponse
-from backend.meeting_processor import MeetingProcessor
-from backend.llm_client.ollama_client import OllamaClient
 from fastapi.middleware.cors import CORSMiddleware
-from backend.jira_ticket_creator import JiraTicketCreator, JiraTicket
 import uvicorn
+from groq import Groq
+from dotenv import load_dotenv
 
+from rate_limiter import RateLimiter
+
+load_dotenv()
 app = FastAPI()
-llm_client = OllamaClient()
 
 origins = [
     "http://localhost",
@@ -24,27 +24,27 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+#load api key
+api_key = os.environ.get("GROQ_API_KEY")
 
-@app.post("/summarize/")
-async def summarize_log(conversation_log: str = Form(...)):
-    meeting_processor = MeetingProcessor(llm_client=llm_client)
-    summary = meeting_processor.summarize(conversation_log)
-    return JSONResponse(content={"summary": summary})
+llm_client = Groq(
+    api_key=os.environ.get("GROQ_API_KEY")
+)
 
-
-@app.post("/generate_tickets/")
-async def generate_tickets(conversation_log: str = Form(...)):
-    meeting_processor = MeetingProcessor(llm_client=llm_client)
-    tickets = [asdict(ticket) for ticket in meeting_processor.generate_tickets(conversation_log)]
-    return JSONResponse(content={"tickets": tickets})
+rate_limiter = RateLimiter(10, 1)
 
 
-@app.post("/push_ticket_to_jira/")
-async def push_ticket_to_jira(ticket: str = Form(...)):
-    ticket_data = json.loads(ticket)
-    ticket_creator = JiraTicketCreator()
-    response = ticket_creator.create_ticket(JiraTicket(**ticket_data))
-    return JSONResponse(content={"response": response})
+@app.post('/post/')
+async def post_query(query: str = Form(...)):
+    if not rate_limiter.allow_request():
+        wait_time = rate_limiter.wait_time()
+        raise HTTPException(status_code=429, detail=f"Rate limit exceeded. Try again in {wait_time:.2f} seconds.")
+
+    chat_completion = llm_client.chat.completions.create(
+        messages=[{"role": "system", "content": query}],
+        model="llama3-8b-8192",
+    )
+    return chat_completion.choices[0].message.content
 
 
 if __name__ == "__main__":
