@@ -1,6 +1,5 @@
 import os
 from fastapi import FastAPI, Form, HTTPException
-from starlette.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from groq import Groq
@@ -23,9 +22,6 @@ app.add_middleware(
     allow_methods=["POST"],
     allow_headers=["*"],
 )
-
-#load api key
-api_key = os.environ.get("GROQ_API_KEY")
 
 llm_client = Groq(
     api_key=os.environ.get("GROQ_API_KEY")

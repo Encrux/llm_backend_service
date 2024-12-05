@@ -3,3 +3,4 @@ fastapi
 starlette
 groq
 python-dotenv
+python-multipart
