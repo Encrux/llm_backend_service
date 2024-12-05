@@ -8,8 +8,8 @@ WORKDIR /app
 COPY . /app
 
 # Copy SSL certificate and key
-COPY cert.pem /app/cert.pem
-COPY key.pem /app/key.pem
+COPY /etc/letsencrypt/live/spacey.dns.army/fullchain.pem /app/fullchain.pem
+COPY /etc/letsencrypt/live/spacey.dns.army/privkey.pem /app/privkey.pem
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
@@ -22,4 +22,4 @@ EXPOSE 443
 ENV PYTHONUNBUFFERED=1
 
 # Run app.py when the container launches
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--ssl-keyfile", "/app/key.pem", "--ssl-certfile", "/app/cert.pem"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--ssl-keyfile", "/app/privkey.pem", "--ssl-certfile", "/app/fullchain.pem"]
