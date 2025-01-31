@@ -40,7 +40,7 @@ async def post_query(query: str = Form(...)):
 
     chat_completion = llm_client.chat.completions.create(
         messages=[{"role": "system", "content": query}],
-        model="llama3-8b-8192",
+        model=os.environ.get("GROQ_MODEL"),
     )
     return chat_completion.choices[0].message.content
 
