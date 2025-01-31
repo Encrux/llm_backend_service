@@ -11,7 +11,8 @@ load_dotenv()
 app = FastAPI()
 
 origins = [
-    "https://localhost",
+    "http://localhost",
+    "http://localhost:3000",
     "https://spacey.dns.army",
     "https://encrux.github.io",
 ]
