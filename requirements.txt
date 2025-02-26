@@ -1,6 +1,5 @@
-uvicorn
-fastapi
-starlette
-groq
-python-dotenv
-python-multipart
+uvicorn~=0.20.0
+fastapi~=0.112.2
+groq~=0.13.0
+python-dotenv~=0.21.0
+jira~=3.6.0

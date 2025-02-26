@@ -4,15 +4,19 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from groq import Groq
 from dotenv import load_dotenv
+from tickets.jira_ticket import router as jira_router
 
 from rate_limiter import RateLimiter
 
 load_dotenv()
 app = FastAPI()
 
+app.include_router(jira_router)
+
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    "http://localhost:3001",
     "https://spacey.dns.army",
     "https://encrux.github.io",
 ]

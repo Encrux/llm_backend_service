@@ -1,0 +1,12 @@
+{
+    "fields": {
+        "project": {
+            "key": "SCRUM"
+        },
+        "summary": "Test Ticket Summary",
+        "description": "Detailed description here",
+        "issuetype": {
+            "name": "Task"
+        }
+    }
+}

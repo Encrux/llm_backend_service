@@ -16,6 +16,29 @@ example for deployed service @ spacey.dns.army
 curl -X POST "https://spacey.dns.army/post/" -H "Content-Type: application/x-www-form-urlencoded" -d "query=Can you provide me with a cake recipe?"
 ```
 
+
+-------
+example call to create jira ticket at jira:
+
+```bash
+curl -D- \
+  -u mail:jira_api_key \
+  -X POST \
+  --data @test/data/jira_api.json \
+  -H "Content-Type: application/json" \
+  https://neainfinity.atlassian.net/rest/api/2/issue/
+```
+
+example call to the proxy:
+
+```bash
+curl -X POST \
+     --data @test/data/proxy.json \
+     -H "Content-Type: application/json" \
+     http://localhost:8000/tickets/create_ticket   
+```
+
+
 ## Deployment
 To deploy, just run deploy.sh. Make sure docker is installed and wokring.
 

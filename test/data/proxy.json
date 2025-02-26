@@ -1,0 +1,11 @@
+{
+    "data": {
+        "summary": "Test Ticket Summary123",
+        "description": "Detailed description here",
+        "issue_type": "Task"
+    },
+    "jira_domain": "https://neainfinity.atlassian.net",
+    "email": "neainfinity@gmail.com",
+    "jira_api_key": "jira_api_key",
+    "board_id": "project_key"
+}
