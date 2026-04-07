@@ -65,6 +65,20 @@ async def proxy_chat_completions(request: Request):
 
     body = await request.body()
 
+    # Log the user's task for analytics
+    try:
+        import json
+        body_json = json.loads(body)
+        for msg in body_json.get("messages", []):
+            if msg.get("role") == "system":
+                lines = msg["content"].split("\n")
+                task = next((l.replace("Task: ", "") for l in lines if l.startswith("Task: ")), None)
+                if task:
+                    print(f"[prompt] {task}")
+                break
+    except Exception:
+        pass
+
     async with httpx.AsyncClient() as client:
         resp = await client.post(
             f"{GROQ_BASE_URL}/v1/chat/completions",
