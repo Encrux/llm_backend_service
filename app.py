@@ -74,7 +74,8 @@ async def proxy_chat_completions(request: Request):
                 lines = msg["content"].split("\n")
                 task = next((l.replace("Task: ", "") for l in lines if l.startswith("Task: ")), None)
                 if task:
-                    print(f"[prompt] {task}")
+                    from datetime import datetime
+                    print(f"[prompt] {datetime.now().strftime('%H:%M:%S')} {task}")
                 break
     except Exception:
         pass
